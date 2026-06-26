@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ai-text
+    runtime: node
+    plan: starter
+    region: oregon
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: NEXT_PUBLIC_APP_NAME
+        value: AI TEXT
+      - key: NEXT_PUBLIC_APP_URL
+        fromService:
+          type: web
+          name: ai-text
+          property: hostUrl
