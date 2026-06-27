@@ -5,7 +5,7 @@ export default function Loading() {
     <div className="min-h-[60vh] grid place-items-center">
       <div className="flex flex-col items-center gap-3">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <p className="text-sm text-muted-foreground">Loading…</p>
+        <p className="text-sm text-muted-foreground">جارٍ التحميل…</p>
       </div>
     </div>
   );

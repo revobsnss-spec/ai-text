@@ -9,7 +9,6 @@ export function AuthGuard({ children, adminOnly = false }: { children: React.Rea
   const user = useAuthStore((s) => s.user);
 
   useEffect(() => {
-    // Zustand persist hydrates async; small delay to be safe
     const t = setTimeout(() => {
       const u = useAuthStore.getState().user;
       if (!u) {
@@ -32,7 +31,7 @@ export function AuthGuard({ children, adminOnly = false }: { children: React.Rea
   if (adminOnly && user.role !== "admin") {
     return (
       <div className="min-h-[60vh] grid place-items-center">
-        <p className="text-muted-foreground">Admin access required.</p>
+        <p className="text-muted-foreground">هذه الصفحة متاحة للمسؤولين فقط.</p>
       </div>
     );
   }

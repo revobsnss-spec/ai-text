@@ -34,7 +34,7 @@ export function StepsIndicator({ steps, current }: StepsIndicatorProps) {
               </motion.div>
               <span className={cn(
                 "hidden sm:block text-sm font-medium",
-                active ? "text-foreground" : done ? "text-muted-foreground" : "text-muted-foreground"
+                active ? "text-foreground" : "text-muted-foreground"
               )}>
                 {s.label}
               </span>
@@ -42,7 +42,7 @@ export function StepsIndicator({ steps, current }: StepsIndicatorProps) {
             {i < steps.length - 1 && (
               <div className="hidden sm:block w-10 h-px bg-border relative overflow-hidden">
                 <motion.div
-                  className="absolute inset-y-0 left-0 bg-primary"
+                  className="absolute inset-y-0 right-0 bg-primary"
                   initial={{ width: 0 }}
                   animate={{ width: done ? "100%" : 0 }}
                   transition={{ duration: 0.4 }}

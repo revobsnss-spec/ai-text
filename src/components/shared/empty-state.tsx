@@ -26,7 +26,7 @@ export function EmptyState({
         <Icon className="h-7 w-7 text-primary" />
       </div>
       <h3 className="text-lg font-semibold mb-1">{title}</h3>
-      <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6">{description}</p>
+      <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6 leading-relaxed">{description}</p>
       {cta && (
         <Button asChild>
           <Link href={href}>

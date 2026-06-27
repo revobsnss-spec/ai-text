@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Loader2, Sparkles, Wand2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, Loader2, Sparkles, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,9 +17,9 @@ import { usePromptStore } from "@/lib/store/prompts";
 import type { TaskType, AIPlatform } from "@/types";
 
 const STEPS = [
-  { id: "task", label: "Task" },
-  { id: "platform", label: "Platform" },
-  { id: "details", label: "Details" },
+  { id: "task", label: "المهمة" },
+  { id: "platform", label: "المنصة" },
+  { id: "details", label: "التفاصيل" },
 ];
 
 export function PromptWizard() {
@@ -53,11 +53,10 @@ export function PromptWizard() {
   const handleGenerate = async () => {
     if (!taskType || !platform || !user) return;
     setIsGenerating(true);
-    // simulate engine compute time
     await new Promise((r) => setTimeout(r, 1400));
     const saved = addPrompt(user.id, taskType, platform, answers);
     setIsGenerating(false);
-    toast.success("Prompts generated!");
+    toast.success("تم توليد البرومبتات!");
     router.push(`/result/${saved.id}`);
   };
 
@@ -78,12 +77,12 @@ export function PromptWizard() {
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 backdrop-blur-sm px-3 py-1 text-xs font-medium mb-4">
           <Wand2 className="h-3.5 w-3.5 text-primary" />
-          Prompt Generator
+          مولّد البرومبتات
         </div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-          Build the <span className="text-gradient">perfect prompt</span>
+          ابنِ <span className="text-gradient">البرومبت المثالي</span>
         </h1>
-        <p className="text-muted-foreground mt-2">3 simple steps. World-class output.</p>
+        <p className="text-muted-foreground mt-2">3 خطوات بسيطة. مخرجات عالمية المستوى.</p>
       </div>
 
       <StepsIndicator steps={STEPS} current={step} />
@@ -99,8 +98,8 @@ export function PromptWizard() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25 }}
               >
-                <h2 className="text-xl font-semibold mb-1">What do you want to create?</h2>
-                <p className="text-sm text-muted-foreground mb-6">Pick the type of task you're working on.</p>
+                <h2 className="text-xl font-semibold mb-1">ماذا تريد أن تنشئ؟</h2>
+                <p className="text-sm text-muted-foreground mb-6">اختر نوع المهمة التي تعمل عليها.</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                   {TASK_TYPES.map((t) => (
                     <TaskTypeCard
@@ -122,8 +121,8 @@ export function PromptWizard() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25 }}
               >
-                <h2 className="text-xl font-semibold mb-1">Which AI platform?</h2>
-                <p className="text-sm text-muted-foreground mb-6">We'll tune the prompt for that platform's quirks.</p>
+                <h2 className="text-xl font-semibold mb-1">أي منصة ذكاء اصطناعي؟</h2>
+                <p className="text-sm text-muted-foreground mb-6">سنضبط البرومبت على خصائص تلك المنصة.</p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {AI_PLATFORMS.map((p) => (
                     <PlatformCard
@@ -145,9 +144,9 @@ export function PromptWizard() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25 }}
               >
-                <h2 className="text-xl font-semibold mb-1">Tell us a bit more</h2>
-                <p className="text-sm text-muted-foreground mb-6">Answer a few questions — the more detail, the better the output.</p>
-                <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin">
+                <h2 className="text-xl font-semibold mb-1">أخبرنا المزيد</h2>
+                <p className="text-sm text-muted-foreground mb-6">أجب على بعض الأسئلة — كلما زادت التفاصيل، كان المخرج أفضل.</p>
+                <div className="space-y-6 max-h-[60vh] overflow-y-auto ps-2 scrollbar-thin">
                   {questions.map((q) => (
                     <QuestionField
                       key={q.id}
@@ -164,7 +163,7 @@ export function PromptWizard() {
 
         <div className="border-t border-border bg-muted/30 px-6 md:px-10 py-4 flex items-center justify-between">
           <Button variant="ghost" onClick={onBack} disabled={step === 0 || isGenerating}>
-            <ArrowLeft className="h-4 w-4" /> Back
+            <ArrowRight className="h-4 w-4" /> السابق
           </Button>
           <Button
             onClick={onNext}
@@ -174,15 +173,15 @@ export function PromptWizard() {
           >
             {isGenerating ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" /> Generating…
+                <Loader2 className="h-4 w-4 animate-spin" /> جارٍ التوليد…
               </>
             ) : step === 2 ? (
               <>
-                <Sparkles className="h-4 w-4" /> Generate prompts
+                <Sparkles className="h-4 w-4" /> ولّد البرومبتات
               </>
             ) : (
               <>
-                Continue <ArrowRight className="h-4 w-4" />
+                التالي <ArrowLeft className="h-4 w-4" />
               </>
             )}
           </Button>

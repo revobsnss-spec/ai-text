@@ -1,43 +1,45 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Cairo } from "next/font/google";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Toaster } from "@/components/shared/toaster";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aitext.app"),
+  metadataBase: new URL("https://ai-text.app"),
   title: {
-    default: "AI TEXT — Generate Perfect Prompts for Any AI",
+    default: "AI TEXT — أنشئ برومبتات مثالية لأي ذكاء اصطناعي",
     template: "%s | AI TEXT",
   },
   description:
-    "AI TEXT is the most advanced AI prompt engineering platform. Generate perfect, platform-optimized prompts for ChatGPT, Midjourney, Claude and more — in seconds.",
+    "AI TEXT هي المنصة الأكثر تطوراً لهندسة البرومبتات. أنشئ برومبتات مثالية ومحسّنة لـ ChatGPT و Midjourney و Claude والمزيد — في ثوانٍ.",
   keywords: [
-    "AI prompt generator",
-    "prompt engineering",
-    "ChatGPT prompts",
-    "Midjourney prompts",
-    "Claude prompts",
-    "AI tools",
-    "prompt templates",
+    "مولد البرومبتات",
+    "هندسة البرومبتات",
+    "برومبتات ChatGPT",
+    "برومبتات Midjourney",
+    "أدوات الذكاء الاصطناعي",
   ],
   authors: [{ name: "AI TEXT" }],
   creator: "AI TEXT",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://aitext.app",
-    title: "AI TEXT — Advanced AI Prompt Engineering",
-    description: "Generate perfect prompts for any AI system — without technical knowledge.",
+    locale: "ar_SA",
+    url: "https://ai-text.app",
+    title: "AI TEXT — منصة هندسة البرومبتات",
+    description: "أنشئ برومبتات مثالية لأي ذكاء اصطناعي — بدون خبرة تقنية.",
     siteName: "AI TEXT",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI TEXT — Generate Perfect AI Prompts",
-    description: "The smartest way to engineer AI prompts.",
-    creator: "@aitext",
+    title: "AI TEXT — أنشئ برومبتات AI مثالية",
+    description: "الطريقة الأذكى لهندسة البرومبتات.",
   },
   robots: { index: true, follow: true },
 };
@@ -53,9 +55,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html lang="ar" dir="rtl" suppressHydrationWarning className={cairo.variable}>
       <body className="font-sans antialiased min-h-screen">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
         </ThemeProvider>

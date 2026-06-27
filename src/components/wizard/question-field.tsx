@@ -37,6 +37,7 @@ export function QuestionField({ question, value, onChange }: Props) {
           value={(value as string) ?? ""}
           onChange={(e) => onChange(e.target.value)}
           className="h-11"
+          dir="auto"
         />
       )}
 
@@ -47,6 +48,7 @@ export function QuestionField({ question, value, onChange }: Props) {
           onChange={(e) => onChange(e.target.value)}
           rows={4}
           className="min-h-[110px]"
+          dir="auto"
         />
       )}
 
@@ -60,7 +62,7 @@ export function QuestionField({ question, value, onChange }: Props) {
                 type="button"
                 onClick={() => onChange(opt.value)}
                 className={cn(
-                  "px-3.5 py-2.5 rounded-xl border text-sm font-medium text-left transition-all",
+                  "px-3.5 py-2.5 rounded-xl border text-sm font-medium text-right transition-all",
                   selected
                     ? "border-primary bg-primary/10 text-foreground shadow-sm"
                     : "border-border bg-card hover:border-primary/40 hover:bg-accent"
@@ -83,7 +85,7 @@ export function QuestionField({ question, value, onChange }: Props) {
                 type="button"
                 onClick={() => onChange(opt.value)}
                 className={cn(
-                  "w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all",
+                  "w-full flex items-center gap-3 p-3 rounded-xl border text-right transition-all",
                   selected
                     ? "border-primary bg-primary/5"
                     : "border-border hover:border-primary/40"
@@ -123,7 +125,7 @@ export function QuestionField({ question, value, onChange }: Props) {
                   else onChange([...arr, opt.value]);
                 }}
                 className={cn(
-                  "px-3 py-2.5 rounded-xl border text-sm font-medium text-left transition-all flex items-center gap-2",
+                  "px-3 py-2.5 rounded-xl border text-sm font-medium text-right transition-all flex items-center gap-2",
                   selected
                     ? "border-primary bg-primary/10 text-foreground"
                     : "border-border bg-card hover:border-primary/40 hover:bg-accent"
@@ -137,7 +139,7 @@ export function QuestionField({ question, value, onChange }: Props) {
                 >
                   {selected && <Check className="h-3 w-3" strokeWidth={3} />}
                 </span>
-                <span className="truncate">{opt.label}</span>
+                <span className="truncate flex-1 text-right">{opt.label}</span>
               </button>
             );
           })}

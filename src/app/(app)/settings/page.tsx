@@ -22,7 +22,6 @@ export default function SettingsPage() {
   const [name, setName] = useState(user?.name ?? "");
   const [email, setEmail] = useState(user?.email ?? "");
   const [notifications, setNotifications] = useState(user?.preferences?.notifications ?? true);
-  const [language, setLanguage] = useState<"en" | "ar">(user?.preferences?.language ?? "en");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function SettingsPage() {
       setName(user.name);
       setEmail(user.email);
       setNotifications(user.preferences?.notifications ?? true);
-      setLanguage(user.preferences?.language ?? "en");
     }
   }, [user]);
 
@@ -42,16 +40,20 @@ export default function SettingsPage() {
     updateProfile({
       name,
       email,
-      preferences: { notifications, language, theme: (theme as any) ?? "system" },
+      preferences: {
+        notifications,
+        language: "ar",
+        theme: (theme as any) ?? "system",
+      },
     });
     setSaving(false);
-    toast.success("Settings saved");
+    toast.success("تم حفظ الإعدادات");
   };
 
   const onClearHistory = () => {
-    if (confirm("Delete all prompts from your history? This cannot be undone.")) {
+    if (confirm("هل تريد حذف جميع البرومبتات من سجلك؟ لا يمكن التراجع عن هذا.")) {
       clearAll();
-      toast.success("History cleared");
+      toast.success("تم مسح السجل");
     }
   };
 
@@ -64,19 +66,18 @@ export default function SettingsPage() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-sm text-muted-foreground">Manage your account and preferences</p>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">الإعدادات</h1>
+        <p className="text-sm text-muted-foreground">إدارة حسابك وتفضيلاتك</p>
       </motion.div>
 
       <div className="space-y-6">
-        {/* Profile */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5 text-primary" /> Profile
+                <User className="h-5 w-5 text-primary" /> الملف الشخصي
               </CardTitle>
-              <CardDescription>Update your personal information</CardDescription>
+              <CardDescription>تحديث معلوماتك الشخصية</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="flex items-center gap-4">
@@ -85,9 +86,9 @@ export default function SettingsPage() {
                 </Avatar>
                 <div>
                   <p className="font-semibold">{user.name}</p>
-                  <p className="text-xs text-muted-foreground">{user.email}</p>
+                  <p className="text-xs text-muted-foreground" dir="ltr">{user.email}</p>
                   <Badge variant={user.role === "admin" ? "gradient" : "secondary"} className="mt-1">
-                    {user.role === "admin" ? "Admin" : "User"}
+                    {user.role === "admin" ? "مسؤول" : "مستخدم"}
                   </Badge>
                 </div>
               </div>
@@ -96,7 +97,7 @@ export default function SettingsPage() {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="settings-name">Full name</Label>
+                  <Label htmlFor="settings-name">الاسم الكامل</Label>
                   <Input
                     id="settings-name"
                     value={name}
@@ -105,13 +106,14 @@ export default function SettingsPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="settings-email">Email</Label>
+                  <Label htmlFor="settings-email">البريد الإلكتروني</Label>
                   <Input
                     id="settings-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="mt-1.5"
+                    dir="ltr"
                   />
                 </div>
               </div>
@@ -119,29 +121,28 @@ export default function SettingsPage() {
           </Card>
         </motion.div>
 
-        {/* Appearance */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Palette className="h-5 w-5 text-primary" /> Appearance
+                <Palette className="h-5 w-5 text-primary" /> المظهر
               </CardTitle>
-              <CardDescription>Customize how AI TEXT looks for you</CardDescription>
+              <CardDescription>خصص كيف يبدو AI TEXT لك</CardDescription>
             </CardHeader>
             <CardContent>
-              <Label className="mb-3 block">Theme</Label>
+              <Label className="mb-3 block">السمة</Label>
               <div className="grid grid-cols-3 gap-2">
                 {(["light", "dark", "system"] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => setTheme(t)}
-                    className={`p-3 rounded-xl border text-sm font-medium capitalize transition-all ${
+                    className={`p-3 rounded-xl border text-sm font-medium transition-all ${
                       theme === t
                         ? "border-primary bg-primary/10 text-foreground"
                         : "border-border hover:border-primary/40"
                     }`}
                   >
-                    {t}
+                    {t === "light" ? "فاتح" : t === "dark" ? "داكن" : "النظام"}
                   </button>
                 ))}
               </div>
@@ -149,76 +150,50 @@ export default function SettingsPage() {
           </Card>
         </motion.div>
 
-        {/* Preferences */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Bell className="h-5 w-5 text-primary" /> Preferences
+                <Bell className="h-5 w-5 text-primary" /> التفضيلات
               </CardTitle>
-              <CardDescription>Notifications and language</CardDescription>
+              <CardDescription>الإشعارات</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-sm">Email notifications</p>
-                  <p className="text-xs text-muted-foreground">Receive product updates and tips</p>
+                  <p className="font-medium text-sm">إشعارات البريد الإلكتروني</p>
+                  <p className="text-xs text-muted-foreground">تلقي تحديثات المنتج والنصائح</p>
                 </div>
                 <Switch checked={notifications} onCheckedChange={setNotifications} />
-              </div>
-
-              <Separator />
-
-              <div>
-                <Label className="mb-3 block flex items-center gap-2">
-                  <Globe className="h-4 w-4" /> Default language
-                </Label>
-                <div className="grid grid-cols-2 gap-2">
-                  {(["en", "ar"] as const).map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => setLanguage(l)}
-                      className={`p-3 rounded-xl border text-sm font-medium transition-all ${
-                        language === l
-                          ? "border-primary bg-primary/10"
-                          : "border-border hover:border-primary/40"
-                      }`}
-                    >
-                      {l === "en" ? "English" : "العربية (Arabic)"}
-                    </button>
-                  ))}
-                </div>
               </div>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Data */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Trash2 className="h-5 w-5 text-destructive" /> Data
+                <Trash2 className="h-5 w-5 text-destructive" /> البيانات
               </CardTitle>
-              <CardDescription>Manage your local data</CardDescription>
+              <CardDescription>إدارة بياناتك المحلية</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between p-4 rounded-xl border border-destructive/30 bg-destructive/5">
                 <div>
-                  <p className="font-medium text-sm">Clear prompt history</p>
+                  <p className="font-medium text-sm">مسح سجل البرومبتات</p>
                   <p className="text-xs text-muted-foreground">
-                    Delete all {prompts.length} prompt{prompts.length !== 1 && "s"} from your local storage. Favorites will also be removed.
+                    حذف جميع الـ {prompts.length} برومبت من التخزين المحلي. ستُحذف المفضلة أيضاً.
                   </p>
                 </div>
                 <Button variant="destructive" size="sm" onClick={onClearHistory}>
-                  Clear all
+                  مسح الكل
                 </Button>
               </div>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Save */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -228,11 +203,11 @@ export default function SettingsPage() {
           <Button onClick={onSave} size="lg" disabled={saving}>
             {saving ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" /> Saving…
+                <Loader2 className="h-4 w-4 animate-spin" /> جارٍ الحفظ…
               </>
             ) : (
               <>
-                <Save className="h-4 w-4" /> Save changes
+                <Save className="h-4 w-4" /> حفظ التغييرات
               </>
             )}
           </Button>

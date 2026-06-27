@@ -21,8 +21,8 @@ export default function FavoritesPage() {
             <Heart className="h-5 w-5 text-white fill-white" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Favorites</h1>
-            <p className="text-sm text-muted-foreground">Your saved prompts — ready to reuse anytime.</p>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">المفضلة</h1>
+            <p className="text-sm text-muted-foreground">برومبتاتك المحفوظة — جاهزة لإعادة الاستخدام في أي وقت.</p>
           </div>
         </div>
       </motion.div>
@@ -30,9 +30,9 @@ export default function FavoritesPage() {
       {favs.length === 0 ? (
         <EmptyState
           icon={Heart}
-          title="No favorites yet"
-          description="Click the heart icon on any prompt to save it here for quick access."
-          cta="Browse history"
+          title="لا توجد مفضلة بعد"
+          description="اضغط على أيقونة القلب في أي برومبت لحفظه هنا للوصول السريع."
+          cta="تصفح السجل"
           href="/history"
         />
       ) : (

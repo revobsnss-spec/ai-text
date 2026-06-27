@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 import { Wand2, Layers, Globe2, Languages, Shield, BarChart3, Heart, History, Smartphone } from "lucide-react";
 
 const FEATURES = [
-  { icon: Wand2, title: "Guided wizard", desc: "No blank-page anxiety. Answer a few questions, get world-class prompts.", color: "from-purple-500 to-pink-500" },
-  { icon: Layers, title: "3-tier output", desc: "Basic, Professional, and Expert variants for every task — instantly.", color: "from-blue-500 to-cyan-500" },
-  { icon: Globe2, title: "10 AI platforms", desc: "Optimized for ChatGPT, Midjourney, Claude, Flux, Veo, Runway, and more.", color: "from-emerald-500 to-teal-500" },
-  { icon: Languages, title: "Bilingual", desc: "Translate any prompt between English and Arabic with one click.", color: "from-amber-500 to-orange-500" },
-  { icon: Shield, title: "Best-practice baked in", desc: "Every prompt follows the latest prompt-engineering research.", color: "from-rose-500 to-pink-500" },
-  { icon: BarChart3, title: "Admin analytics", desc: "Track usage, top categories, and user growth from a single dashboard.", color: "from-indigo-500 to-violet-500" },
-  { icon: Heart, title: "Favorites", desc: "Save your best prompts. Build a personal library you can re-use forever.", color: "from-pink-500 to-rose-500" },
-  { icon: History, title: "History", desc: "Never lose work. Every prompt you generate is saved and searchable.", color: "from-sky-500 to-blue-500" },
-  { icon: Smartphone, title: "Works everywhere", desc: "Beautifully responsive. Generate from your phone, tablet, or laptop.", color: "from-green-500 to-emerald-500" },
+  { icon: Wand2, title: "معالج موجّه", desc: "لا قلق من الصفحة البيضاء. أجب على بعض الأسئلة واحصل على برومبتات عالمية المستوى.", color: "from-purple-500 to-pink-500" },
+  { icon: Layers, title: "3 مستويات للمخرجات", desc: "برومبتات عادية واحترافية وعلى مستوى الخبراء لكل مهمة — فوراً.", color: "from-blue-500 to-cyan-500" },
+  { icon: Globe2, title: "10 منصات ذكاء اصطناعي", desc: "محسّنة لـ ChatGPT و Midjourney و Claude و Flux و Veo و Runway وغيرها.", color: "from-emerald-500 to-teal-500" },
+  { icon: Languages, title: "ثنائي اللغة", desc: "ترجم أي برومبت بين الإنجليزية والعربية بضغطة زر واحدة.", color: "from-amber-500 to-orange-500" },
+  { icon: Shield, title: "أفضل الممارسات مدمجة", desc: "كل برومبت يتبع أحدث أبحاث هندسة البرومبتات.", color: "from-rose-500 to-pink-500" },
+  { icon: BarChart3, title: "تحليلات الأدمن", desc: "تابع الاستخدام وأعلى الفئات ونمو المستخدمين من لوحة تحكم واحدة.", color: "from-indigo-500 to-violet-500" },
+  { icon: Heart, title: "المفضلة", desc: "احفظ أفضل برومبتاتك. ابنِ مكتبة شخصية يمكنك إعادة استخدامها للأبد.", color: "from-pink-500 to-rose-500" },
+  { icon: History, title: "السجل", desc: "لا تفقد أي عمل. كل برومبت تولّده يتم حفظه ويمكن البحث فيه.", color: "from-sky-500 to-blue-500" },
+  { icon: Smartphone, title: "يعمل في كل مكان", desc: "تصميم متجاوب بالكامل. ولّد البرومبتات من جوالك أو جهازك اللوحي أو حاسوبك.", color: "from-green-500 to-emerald-500" },
 ];
 
 export function Features() {
@@ -25,12 +25,12 @@ export function Features() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">Features</p>
+          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">المميزات</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            Everything you need to <span className="text-gradient">engineer the perfect prompt</span>.
+            كل ما تحتاجه <span className="text-gradient">للهندسة برومبت مثالي</span>.
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            Powerful primitives, beautiful design, and an engine tuned for results.
+          <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
+            أدوات قوية، تصميم جميل، ومحرك مضبوط للنتائج.
           </p>
         </motion.div>
 

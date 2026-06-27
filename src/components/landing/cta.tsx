@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "./aurora-background";
 
@@ -24,20 +24,20 @@ export function CTA() {
               <Sparkles className="h-7 w-7 text-white" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-              Ready to ship <span className="text-gradient">better AI work</span>?
+              مستعد لشحن <span className="text-gradient">عمل AI أفضل</span>؟
             </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Join 50,000+ creators, founders and engineers who use AI TEXT to engineer perfect prompts in seconds.
+            <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
+              انضم إلى أكثر من 50,000 مبدع ومؤسس ومهندس يستخدمون AI TEXT لهندسة برومبتات مثالية في ثوانٍ.
             </p>
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button size="xl" variant="gradient" asChild className="w-full sm:w-auto group">
                 <Link href="/register">
-                  Get started — it's free
-                  <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
+                  ابدأ الآن — مجاني
+                  <ArrowLeft className="transition-transform group-hover:-translate-x-0.5" />
                 </Link>
               </Button>
               <Button size="xl" variant="glass" asChild className="w-full sm:w-auto">
-                <Link href="/dashboard">Try the generator</Link>
+                <Link href="/dashboard">جرّب المولّد</Link>
               </Button>
             </div>
           </div>

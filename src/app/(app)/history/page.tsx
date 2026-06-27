@@ -45,28 +45,28 @@ export default function HistoryPage() {
             <HistoryIcon className="h-5 w-5 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Prompt History</h1>
-            <p className="text-sm text-muted-foreground">Every prompt you've ever generated.</p>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">سجل البرومبتات</h1>
+            <p className="text-sm text-muted-foreground">كل برومبت ولّدته على الإطلاق.</p>
           </div>
         </div>
       </motion.div>
 
       {prompts.length === 0 ? (
         <EmptyState
-          title="No prompts yet"
-          description="Generate your first prompt to see it here. Every prompt you create is saved automatically."
-          cta="Generate a prompt"
+          title="لا توجد برومبتات بعد"
+          description="ولّد أول برومبت لك لتجده هنا. كل برومبت تنشئه يُحفظ تلقائياً."
+          cta="ولّد برومبت"
         />
       ) : (
         <>
           <div className="flex flex-col md:flex-row gap-3 mb-6">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search prompts…"
+                placeholder="ابحث في البرومبتات…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                className="pl-10 h-11"
+                className="pe-10 h-11"
               />
             </div>
             <Button
@@ -75,7 +75,7 @@ export default function HistoryPage() {
               onClick={() => setFilter("all")}
               className={filter === "all" ? "border-primary" : ""}
             >
-              <Filter className="h-4 w-4" /> All
+              <Filter className="h-4 w-4" /> الكل
             </Button>
           </div>
 
@@ -94,7 +94,7 @@ export default function HistoryPage() {
                         : "bg-card border-border hover:border-primary/40"
                     }`}
                   >
-                    {t?.label ?? task} <span className="opacity-70 ml-1">({count})</span>
+                    {t?.label ?? task} <span className="opacity-70 me-1">({count})</span>
                   </button>
                 );
               })}
@@ -112,7 +112,7 @@ export default function HistoryPage() {
                         : "bg-card border-border hover:border-foreground/40"
                     }`}
                   >
-                    {p.label} <span className="opacity-70 ml-1">({count})</span>
+                    {p.label} <span className="opacity-70 me-1">({count})</span>
                   </button>
                 );
               })}
@@ -122,14 +122,14 @@ export default function HistoryPage() {
           {filtered.length === 0 ? (
             <EmptyState
               icon={Search}
-              title="No matches"
-              description="Try adjusting your search or filter."
-              cta="Clear filters"
+              title="لا توجد نتائج"
+              description="حاول تعديل البحث أو الفلتر."
+              cta="إعادة تعيين الفلاتر"
             />
           ) : (
             <>
               <div className="flex items-center justify-between mb-4">
-                <Badge variant="secondary">{filtered.length} prompt{filtered.length !== 1 && "s"}</Badge>
+                <Badge variant="secondary">{filtered.length} برومبت</Badge>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filtered.map((p, i) => (

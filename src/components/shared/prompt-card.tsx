@@ -20,7 +20,7 @@ export function PromptCard({ prompt, index = 0 }: { prompt: GeneratedPrompt; ind
     e.preventDefault();
     e.stopPropagation();
     const ok = await copyToClipboard(prompt.prompts.professional);
-    if (ok) toast.success("Professional prompt copied");
+    if (ok) toast.success("تم نسخ البرومبت الاحترافي");
   };
 
   const onFav = (e: React.MouseEvent) => {
@@ -33,7 +33,7 @@ export function PromptCard({ prompt, index = 0 }: { prompt: GeneratedPrompt; ind
     e.preventDefault();
     e.stopPropagation();
     removePrompt(prompt.id);
-    toast.success("Prompt deleted");
+    toast.success("تم حذف البرومبت");
   };
 
   return (
@@ -50,7 +50,7 @@ export function PromptCard({ prompt, index = 0 }: { prompt: GeneratedPrompt; ind
               <Badge variant="secondary">{task?.label ?? prompt.taskType}</Badge>
               <Badge variant="outline">{platform?.label ?? prompt.platform}</Badge>
             </div>
-            <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[3.75rem]">
+            <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[3.75rem]" dir="ltr">
               {truncate(prompt.prompts.professional, 200)}
             </p>
             <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
@@ -63,7 +63,7 @@ export function PromptCard({ prompt, index = 0 }: { prompt: GeneratedPrompt; ind
                   size="icon"
                   className="h-8 w-8"
                   onClick={onCopy}
-                  aria-label="Copy"
+                  aria-label="نسخ"
                 >
                   <Copy className="h-3.5 w-3.5" />
                 </Button>
@@ -72,7 +72,7 @@ export function PromptCard({ prompt, index = 0 }: { prompt: GeneratedPrompt; ind
                   size="icon"
                   className="h-8 w-8"
                   onClick={onFav}
-                  aria-label="Favorite"
+                  aria-label="إضافة للمفضلة"
                 >
                   <Heart
                     className={`h-3.5 w-3.5 ${prompt.isFavorite ? "fill-red-500 text-red-500" : ""}`}
@@ -83,7 +83,7 @@ export function PromptCard({ prompt, index = 0 }: { prompt: GeneratedPrompt; ind
                   size="icon"
                   className="h-8 w-8 text-destructive opacity-0 group-hover:opacity-100 transition-opacity"
                   onClick={onDelete}
-                  aria-label="Delete"
+                  aria-label="حذف"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </Button>

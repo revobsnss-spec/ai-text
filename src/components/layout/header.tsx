@@ -13,6 +13,8 @@ import {
   Menu,
   X,
   Wand2,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -22,10 +24,10 @@ import { useAuthStore } from "@/lib/store/auth";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { href: "/dashboard", label: "Generator", icon: Wand2 },
-  { href: "/history", label: "History", icon: History },
-  { href: "/favorites", label: "Favorites", icon: Heart },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/dashboard", label: "المولّد", icon: Wand2 },
+  { href: "/history", label: "السجل", icon: History },
+  { href: "/favorites", label: "المفضلة", icon: Heart },
+  { href: "/settings", label: "الإعدادات", icon: Settings },
 ];
 
 export function Header() {
@@ -105,7 +107,7 @@ export function Header() {
                   )}
                 >
                   <Shield className="h-4 w-4" />
-                  Admin
+                  لوحة التحكم
                 </Link>
               )}
             </nav>
@@ -120,7 +122,7 @@ export function Header() {
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="flex items-center gap-2 rounded-full p-1 hover:bg-accent transition-colors"
-                aria-label="Account menu"
+                aria-label="قائمة الحساب"
               >
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="text-xs">{initials}</AvatarFallback>
@@ -133,14 +135,14 @@ export function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 mt-2 w-64 rounded-xl border border-border bg-popover p-2 shadow-xl"
+                    className="absolute left-0 mt-2 w-64 rounded-xl border border-border bg-popover p-2 shadow-xl"
                   >
                     <div className="px-3 py-2 border-b border-border mb-2">
                       <p className="text-sm font-semibold">{user.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                      <p className="text-xs text-muted-foreground truncate" dir="ltr">{user.email}</p>
                       {user.role === "admin" && (
                         <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-bold uppercase tracking-wider text-primary">
-                          <Shield className="h-3 w-3" /> Admin
+                          <Shield className="h-3 w-3" /> مسؤول
                         </span>
                       )}
                     </div>
@@ -148,13 +150,13 @@ export function Header() {
                       href="/dashboard"
                       className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-accent"
                     >
-                      <LayoutDashboard className="h-4 w-4" /> Dashboard
+                      <LayoutDashboard className="h-4 w-4" /> لوحة المولّد
                     </Link>
                     <Link
                       href="/settings"
                       className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-accent"
                     >
-                      <Settings className="h-4 w-4" /> Settings
+                      <Settings className="h-4 w-4" /> الإعدادات
                     </Link>
                     <button
                       onClick={() => {
@@ -163,7 +165,7 @@ export function Header() {
                       }}
                       className="w-full flex items-center gap-2 px-3 py-2 text-sm rounded-lg hover:bg-accent text-destructive"
                     >
-                      <LogOut className="h-4 w-4" /> Sign out
+                      <LogOut className="h-4 w-4" /> تسجيل الخروج
                     </button>
                   </motion.div>
                 )}
@@ -172,10 +174,10 @@ export function Header() {
           ) : (
             <div className="hidden sm:flex items-center gap-2">
               <Button variant="ghost" size="sm" asChild>
-                <Link href="/login">Sign in</Link>
+                <Link href="/login">تسجيل الدخول</Link>
               </Button>
               <Button size="sm" asChild>
-                <Link href="/register">Get started</Link>
+                <Link href="/register">ابدأ مجاناً</Link>
               </Button>
             </div>
           )}
@@ -185,7 +187,7 @@ export function Header() {
             size="icon"
             className="md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
+            aria-label="القائمة"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
@@ -223,20 +225,20 @@ export function Header() {
                       href="/admin"
                       className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
                     >
-                      <Shield className="h-4 w-4" /> Admin
+                      <Shield className="h-4 w-4" /> لوحة التحكم
                     </Link>
                   )}
                 </>
               ) : (
                 <>
                   <Link href="/login" className="px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-accent">
-                    Sign in
+                    تسجيل الدخول
                   </Link>
                   <Link
                     href="/register"
                     className="px-3 py-2.5 rounded-lg text-sm font-medium bg-primary text-primary-foreground text-center"
                   >
-                    Get started
+                    ابدأ مجاناً
                   </Link>
                 </>
               )}

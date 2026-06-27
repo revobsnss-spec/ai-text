@@ -59,6 +59,7 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: -0.011em;
   }
 }
 
@@ -140,5 +141,15 @@
   background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* RTL support for Arabic content */
+/* RTL adjustments */
 [dir="rtl"] .flip-x { transform: scaleX(-1); }
+
+/* Slightly tighter line-height for Arabic typography */
+html[lang="ar"] body {
+  line-height: 1.65;
+}
+
+/* Improve number rendering in Arabic context */
+html[lang="ar"] {
+  font-variant-numeric: lining-nums;
+}

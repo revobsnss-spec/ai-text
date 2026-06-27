@@ -4,24 +4,24 @@ import { Star, Quote } from "lucide-react";
 
 const TESTIMONIALS = [
   {
-    quote: "AI TEXT is the only tool that consistently turns my fuzzy ideas into prompts that actually work in Midjourney. The expert-tier output is unreal.",
-    name: "Sara K.",
-    role: "Creative Director, Studio Nova",
-    avatar: "S",
+    quote: "AI TEXT هي الأداة الوحيدة التي تحوّل أفكاري الضبابية باستمرار إلى برومبتات تعمل فعلياً في Midjourney. مخرجات مستوى الخبراء لا تصدق.",
+    name: "سارة ك.",
+    role: "مديرة إبداعية، استوديو نوفا",
+    avatar: "س",
     color: "from-pink-500 to-rose-500",
   },
   {
-    quote: "I've shipped three landing pages this week that started as AI TEXT prompts. The platform-optimized formatting for ChatGPT is genuinely 10x faster than writing from scratch.",
-    name: "Daniel M.",
-    role: "Indie founder",
-    avatar: "D",
+    quote: "شحنت ثلاث صفحات هبوط هذا الأسبوع بدأت كبرومبتات من AI TEXT. التنسيق المحسّن لـ ChatGPT أسرع بعشر مرات من الكتابة من الصفر.",
+    name: "دانيال م.",
+    role: "مؤسس مستقل",
+    avatar: "د",
     color: "from-blue-500 to-cyan-500",
   },
   {
-    quote: "As a non-technical marketer, AI TEXT unlocked a whole new category of work for me. I can now brief designers with prompts they'd actually use.",
-    name: "Lina A.",
-    role: "Head of Growth, Northwind",
-    avatar: "L",
+    quote: "كمسوّق غير تقني، فتح لي AI TEXT فئة كاملة من العمل. أستطيع الآن إعطاء المصممين برومبتات سيستخدمونها فعلاً.",
+    name: "لينا أ.",
+    role: "رئيسة النمو، نورثويند",
+    avatar: "ل",
     color: "from-emerald-500 to-teal-500",
   },
 ];
@@ -37,9 +37,9 @@ export function Testimonials() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">Loved by creators</p>
+          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">محبوب من المبدعين</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            What people are <span className="text-gradient">saying</span>.
+            ماذا <span className="text-gradient">يقول الناس</span>.
           </h2>
         </motion.div>
 
@@ -53,7 +53,7 @@ export function Testimonials() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-xl transition-shadow relative"
             >
-              <Quote className="absolute top-5 right-5 h-7 w-7 text-primary/15" />
+              <Quote className="absolute top-5 left-5 h-7 w-7 text-primary/15" />
               <div className="flex gap-0.5 mb-4">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Star key={idx} className="h-4 w-4 text-yellow-500 fill-yellow-500" />

@@ -33,7 +33,7 @@ export const useAuthStore = create<AuthStore>()(
           email,
           role: isAdminEmail(email) ? "admin" : "user",
           createdAt: new Date().toISOString(),
-          preferences: { language: "en", theme: "system", notifications: true },
+          preferences: { language: "ar", theme: "system", notifications: true },
         };
         set({ user, isLoading: false });
         return { ok: true };
@@ -52,7 +52,7 @@ export const useAuthStore = create<AuthStore>()(
           email,
           role: isAdminEmail(email) ? "admin" : "user",
           createdAt: new Date().toISOString(),
-          preferences: { language: "en", theme: "system", notifications: true },
+          preferences: { language: "ar", theme: "system", notifications: true },
         };
         set({ user, isLoading: false });
         return { ok: true };

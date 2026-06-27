@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   Users, Sparkles, TrendingUp, Activity, Shield, Crown, Globe,
-  BarChart3, ArrowUpRight, Database,
+  BarChart3, ArrowUpLeft, Database,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +20,6 @@ export default function AdminPage() {
   const { prompts } = usePromptStore();
   const { user } = useAuthStore();
 
-  // Compute analytics
   const totalPrompts = prompts.length;
   const totalFavorites = prompts.filter((p) => p.isFavorite).length;
   const taskDistribution = useMemo(() => {
@@ -47,14 +46,13 @@ export default function AdminPage() {
       }));
   }, [prompts, totalPrompts]);
 
-  // Mock user list (in a real app this would come from a backend)
   const mockUsers = useMemo(() => {
     const seed = [
-      { name: "Sara Khan", email: "sara@studio.io", role: "user" },
-      { name: "Daniel M.", email: "daniel@indie.dev", role: "user" },
-      { name: "Lina A.", email: "lina@northwind.co", role: "user" },
-      { name: "Ahmed R.", email: "ahmed@design.eg", role: "user" },
-      { name: "Maria G.", email: "maria@ux.studio", role: "user" },
+      { name: "سارة خان", email: "sara@studio.io", role: "user" },
+      { name: "دانيال م.", email: "daniel@indie.dev", role: "user" },
+      { name: "لينا أ.", email: "lina@northwind.co", role: "user" },
+      { name: "أحمد ر.", email: "ahmed@design.eg", role: "user" },
+      { name: "ماريا ج.", email: "maria@ux.studio", role: "user" },
     ];
     if (user) seed.unshift({ name: user.name, email: user.email, role: user.role });
     return seed;
@@ -71,43 +69,41 @@ export default function AdminPage() {
       >
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-semibold mb-3 text-primary">
-            <Shield className="h-3.5 w-3.5" /> Admin dashboard
+            <Shield className="h-3.5 w-3.5" /> لوحة تحكم المسؤول
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Welcome back, {user?.name?.split(" ")[0]}</h1>
-          <p className="text-sm text-muted-foreground">System overview and analytics</p>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">أهلاً بعودتك، {user?.name?.split(" ")[0]}</h1>
+          <p className="text-sm text-muted-foreground">نظرة عامة على النظام والتحليلات</p>
         </div>
       </motion.div>
 
-      {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatsCard icon={Sparkles} label="Total prompts" value={totalPrompts} trend={{ value: 12, positive: true }} index={0} />
-        <StatsCard icon={Users} label="Active users" value={mockUsers.length} trend={{ value: 8, positive: true }} color="from-blue-500 to-cyan-500" index={1} />
-        <StatsCard icon={Activity} label="Total favorites" value={totalFavorites} trend={{ value: 24, positive: true }} color="from-pink-500 to-rose-500" index={2} />
-        <StatsCard icon={TrendingUp} label="Avg per user" value={mockUsers.length === 0 ? 0 : (totalPrompts / mockUsers.length).toFixed(1)} trend={{ value: 5, positive: true }} color="from-emerald-500 to-teal-500" index={3} />
+        <StatsCard icon={Sparkles} label="إجمالي البرومبتات" value={totalPrompts} trend={{ value: 12, positive: true }} index={0} />
+        <StatsCard icon={Users} label="المستخدمون النشطون" value={mockUsers.length} trend={{ value: 8, positive: true }} color="from-blue-500 to-cyan-500" index={1} />
+        <StatsCard icon={Activity} label="إجمالي المفضلة" value={totalFavorites} trend={{ value: 24, positive: true }} color="from-pink-500 to-rose-500" index={2} />
+        <StatsCard icon={TrendingUp} label="المتوسط لكل مستخدم" value={mockUsers.length === 0 ? 0 : (totalPrompts / mockUsers.length).toFixed(1)} trend={{ value: 5, positive: true }} color="from-emerald-500 to-teal-500" index={3} />
       </div>
 
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="grid w-full grid-cols-4 mb-6">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="users">Users</TabsTrigger>
-          <TabsTrigger value="analytics">Analytics</TabsTrigger>
-          <TabsTrigger value="system">System</TabsTrigger>
+          <TabsTrigger value="overview">النظرة العامة</TabsTrigger>
+          <TabsTrigger value="users">المستخدمون</TabsTrigger>
+          <TabsTrigger value="analytics">التحليلات</TabsTrigger>
+          <TabsTrigger value="system">النظام</TabsTrigger>
         </TabsList>
 
-        {/* OVERVIEW */}
         <TabsContent value="overview" className="mt-0 space-y-6">
           <div className="grid lg:grid-cols-3 gap-6">
             <Card className="lg:col-span-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-primary" /> Most used categories
+                  <BarChart3 className="h-5 w-5 text-primary" /> الفئات الأكثر استخداماً
                 </CardTitle>
-                <CardDescription>Top task types across all users</CardDescription>
+                <CardDescription>أعلى أنواع المهام عبر جميع المستخدمين</CardDescription>
               </CardHeader>
               <CardContent>
                 {taskDistribution.length === 0 ? (
                   <p className="text-sm text-muted-foreground py-8 text-center">
-                    No data yet. Generate some prompts to see analytics.
+                    لا توجد بيانات بعد. ولّد بعض البرومبتات لرؤية التحليلات.
                   </p>
                 ) : (
                   <div className="space-y-4">
@@ -132,12 +128,12 @@ export default function AdminPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Top platforms</CardTitle>
-                <CardDescription>By usage</CardDescription>
+                <CardTitle>أفضل المنصات</CardTitle>
+                <CardDescription>حسب الاستخدام</CardDescription>
               </CardHeader>
               <CardContent>
                 {platformDistribution.length === 0 ? (
-                  <p className="text-sm text-muted-foreground py-6 text-center">No data</p>
+                  <p className="text-sm text-muted-foreground py-6 text-center">لا توجد بيانات</p>
                 ) : (
                   <div className="space-y-3">
                     {platformDistribution.slice(0, 5).map((row) => (
@@ -148,7 +144,7 @@ export default function AdminPage() {
                           </div>
                           <div>
                             <div className="text-sm font-medium">{row.platform?.label}</div>
-                            <div className="text-xs text-muted-foreground">{row.count} prompts</div>
+                            <div className="text-xs text-muted-foreground">{row.count} برومبت</div>
                           </div>
                         </div>
                         <Badge variant="secondary">{row.pct.toFixed(0)}%</Badge>
@@ -162,12 +158,12 @@ export default function AdminPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Recent activity</CardTitle>
-              <CardDescription>Latest prompts generated across the system</CardDescription>
+              <CardTitle>النشاط الأخير</CardTitle>
+              <CardDescription>أحدث البرومبتات المولّدة في النظام</CardDescription>
             </CardHeader>
             <CardContent>
               {recentPrompts.length === 0 ? (
-                <p className="text-sm text-muted-foreground py-6 text-center">No recent activity</p>
+                <p className="text-sm text-muted-foreground py-6 text-center">لا يوجد نشاط حديث</p>
               ) : (
                 <div className="space-y-2">
                   {recentPrompts.map((p) => {
@@ -186,7 +182,7 @@ export default function AdminPage() {
                             <div className="text-xs text-muted-foreground">{relativeTime(p.createdAt)}</div>
                           </div>
                         </div>
-                        <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                        <ArrowUpLeft className="h-4 w-4 text-muted-foreground" />
                       </div>
                     );
                   })}
@@ -196,14 +192,13 @@ export default function AdminPage() {
           </Card>
         </TabsContent>
 
-        {/* USERS */}
         <TabsContent value="users" className="mt-0">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-primary" /> User management
+                <Users className="h-5 w-5 text-primary" /> إدارة المستخدمين
               </CardTitle>
-              <CardDescription>Registered users and their activity</CardDescription>
+              <CardDescription>المستخدمون المسجلون ونشاطهم</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
@@ -227,16 +222,16 @@ export default function AdminPage() {
                             {u.name}
                             {u.role === "admin" && (
                               <Badge variant="gradient" className="text-[10px] h-4 px-1.5">
-                                <Crown className="h-2.5 w-2.5 mr-0.5" /> Admin
+                                <Crown className="h-2.5 w-2.5 ml-0.5" /> مسؤول
                               </Badge>
                             )}
                           </div>
-                          <div className="text-xs text-muted-foreground">{u.email}</div>
+                          <div className="text-xs text-muted-foreground" dir="ltr">{u.email}</div>
                         </div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-left">
                         <div className="text-sm font-semibold">{userPrompts}</div>
-                        <div className="text-xs text-muted-foreground">prompts</div>
+                        <div className="text-xs text-muted-foreground">برومبت</div>
                       </div>
                     </motion.div>
                   );
@@ -246,17 +241,16 @@ export default function AdminPage() {
           </Card>
         </TabsContent>
 
-        {/* ANALYTICS */}
         <TabsContent value="analytics" className="mt-0 space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>Platform distribution</CardTitle>
-                <CardDescription>Across all prompts</CardDescription>
+                <CardTitle>توزيع المنصات</CardTitle>
+                <CardDescription>عبر جميع البرومبتات</CardDescription>
               </CardHeader>
               <CardContent>
                 {platformDistribution.length === 0 ? (
-                  <p className="text-sm text-muted-foreground py-6 text-center">No data</p>
+                  <p className="text-sm text-muted-foreground py-6 text-center">لا توجد بيانات</p>
                 ) : (
                   <div className="space-y-4">
                     {platformDistribution.map((row) => (
@@ -275,36 +269,36 @@ export default function AdminPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Engagement</CardTitle>
-                <CardDescription>Favorites vs total</CardDescription>
+                <CardTitle>التفاعل</CardTitle>
+                <CardDescription>المفضلة مقارنة بالإجمالي</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
                   <div className="flex items-end justify-between mb-2">
                     <div>
                       <div className="text-3xl font-bold">{totalFavorites}</div>
-                      <div className="text-sm text-muted-foreground">Total favorites</div>
+                      <div className="text-sm text-muted-foreground">إجمالي المفضلة</div>
                     </div>
                     <Badge variant="success">
-                      {totalPrompts === 0 ? 0 : ((totalFavorites / totalPrompts) * 100).toFixed(0)}% rate
+                      {totalPrompts === 0 ? 0 : ((totalFavorites / totalPrompts) * 100).toFixed(0)}% معدل
                     </Badge>
                   </div>
                   <Progress value={totalPrompts === 0 ? 0 : (totalFavorites / totalPrompts) * 100} />
                 </div>
                 <div className="pt-4 border-t border-border">
-                  <div className="text-sm font-medium mb-3">Insights</div>
+                  <div className="text-sm font-medium mb-3">رؤى</div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="text-primary">•</span>
-                      Most-used platform: <strong className="text-foreground">{platformDistribution[0]?.platform?.label ?? "—"}</strong>
+                      المنصة الأكثر استخداماً: <strong className="text-foreground">{platformDistribution[0]?.platform?.label ?? "—"}</strong>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">•</span>
-                      Most-used category: <strong className="text-foreground">{taskDistribution[0]?.task?.label ?? "—"}</strong>
+                      الفئة الأكثر استخداماً: <strong className="text-foreground">{taskDistribution[0]?.task?.label ?? "—"}</strong>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">•</span>
-                      Total prompts saved: <strong className="text-foreground">{totalPrompts}</strong>
+                      إجمالي البرومبتات المحفوظة: <strong className="text-foreground">{totalPrompts}</strong>
                     </li>
                   </ul>
                 </div>
@@ -313,67 +307,66 @@ export default function AdminPage() {
           </div>
         </TabsContent>
 
-        {/* SYSTEM */}
         <TabsContent value="system" className="mt-0 space-y-6">
           <div className="grid md:grid-cols-3 gap-4">
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Database className="h-4 w-4 text-primary" /> Storage
+                  <Database className="h-4 w-4 text-primary" /> التخزين
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{(prompts.length * 0.024).toFixed(2)} MB</div>
-                <div className="text-xs text-muted-foreground mt-1">of 100 MB local quota</div>
+                <div className="text-2xl font-bold">{(prompts.length * 0.024).toFixed(2)} م.ب</div>
+                <div className="text-xs text-muted-foreground mt-1">من 100 م.ب حصة محلية</div>
                 <Progress value={Math.min((prompts.length * 0.024) / 100 * 100, 100)} className="mt-3" />
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Globe className="h-4 w-4 text-primary" /> API status
+                  <Globe className="h-4 w-4 text-primary" /> حالة API
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-sm font-medium">Operational</span>
+                  <span className="text-sm font-medium">يعمل</span>
                 </div>
-                <div className="text-xs text-muted-foreground mt-2">All systems nominal</div>
+                <div className="text-xs text-muted-foreground mt-2">جميع الأنظمة سليمة</div>
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-primary" /> Security
+                  <Shield className="h-4 w-4 text-primary" /> الأمان
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-sm font-medium">Protected routes active</div>
-                <div className="text-xs text-muted-foreground mt-1">Auth-guarded · Zod-validated</div>
+                <div className="text-sm font-medium">الصفحات المحمية مفعلة</div>
+                <div className="text-xs text-muted-foreground mt-1">محمي بالمصادقة · التحقق بـ Zod</div>
               </CardContent>
             </Card>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle>Configuration</CardTitle>
-              <CardDescription>Manage platform-level settings</CardDescription>
+              <CardTitle>الإعدادات</CardTitle>
+              <CardDescription>إدارة إعدادات مستوى المنصة</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[
-                  { label: "Basic prompts enabled", on: true },
-                  { label: "Professional prompts enabled", on: true },
-                  { label: "Expert prompts enabled", on: true },
-                  { label: "Translation (EN ↔ AR)", on: true },
-                  { label: "AI Improve enhancer", on: true },
-                  { label: "Public registration", on: true },
+                  { label: "البرومبتات الأساسية", on: true },
+                  { label: "البرومبتات الاحترافية", on: true },
+                  { label: "البرومبتات على مستوى الخبراء", on: true },
+                  { label: "الترجمة (عربي ↔ إنجليزي)", on: true },
+                  { label: "محسّن AI", on: true },
+                  { label: "التسجيل العام", on: true },
                 ].map((s) => (
                   <div key={s.label} className="flex items-center justify-between p-3 rounded-lg border border-border">
                     <span className="text-sm font-medium">{s.label}</span>
                     <Badge variant={s.on ? "success" : "secondary"}>
-                      {s.on ? "On" : "Off"}
+                      {s.on ? "مفعّل" : "معطّل"}
                     </Badge>
                   </div>
                 ))}

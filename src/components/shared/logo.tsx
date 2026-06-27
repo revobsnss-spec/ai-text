@@ -25,7 +25,7 @@ export function Logo({ className, size = "md" }: { className?: string; size?: "s
         <Sparkles className={cn("text-white", s.icon)} strokeWidth={2.5} />
         <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary via-purple-500 to-pink-500 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-60" />
       </motion.div>
-      <span className={cn("font-bold tracking-tight", s.text)}>
+      <span className={cn("font-bold tracking-tight", s.text)} dir="ltr">
         AI<span className="text-gradient">TEXT</span>
       </span>
     </Link>

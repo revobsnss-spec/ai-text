@@ -6,28 +6,28 @@ import { cn } from "@/lib/utils";
 
 const FAQS = [
   {
-    q: "Do I need any technical knowledge to use AI TEXT?",
-    a: "Nope. The whole point is to remove the technical barrier. You answer a few friendly questions and we generate professional, expert-level prompts for you — fully ready to paste into any AI tool.",
+    q: "هل أحتاج أي معرفة تقنية لاستخدام AI TEXT؟",
+    a: "لا. الفكرة كلها هي إزالة الحاجز التقني. تجيب على بعض الأسئلة الودية ونولّد لك برومبتات احترافية وعلى مستوى الخبراء — جاهزة تماماً للصق في أي أداة AI.",
   },
   {
-    q: "Which AI platforms are supported?",
-    a: "We support ChatGPT, Gemini, Claude, Midjourney, GPT Image, Flux, Veo, Kling, Runway, and Leonardo AI — with platform-specific formatting, tone, and best practices baked into every output.",
+    q: "ما هي منصات AI المدعومة؟",
+    a: "ندعم ChatGPT و Gemini و Claude و Midjourney و GPT Image و Flux و Veo و Kling و Runway و Leonardo AI — مع التنسيق والنبرة وأفضل الممارسات الخاصة بكل منصة مدمجة في كل مخرجات.",
   },
   {
-    q: "What's the difference between Basic, Professional, and Expert prompts?",
-    a: "Basic is short and direct — perfect for quick experiments. Professional adds structure, role-priming, and constraints for production use. Expert is exhaustive: it includes thinking protocols, deliverables, acceptance criteria, and anti-patterns.",
+    q: "ما الفرق بين برومبت أساسي واحترافي وخبير؟",
+    a: "الأساسي قصير ومباشر — مثالي للتجارب السريعة. الاحترافي يضيف البنية وتحديد الدور والقيود للاستخدام الإنتاجي. الخبير شامل: يتضمن بروتوكولات التفكير والمخرجات ومعايير القبول والأنماط التي يجب تجنبها.",
   },
   {
-    q: "Can I edit or improve prompts after generating?",
-    a: "Absolutely. Every prompt is yours. You can copy, tweak, translate between English and Arabic, regenerate, or run the built-in AI 'Improve' enhancer for a second pass.",
+    q: "هل يمكنني تعديل أو تحسين البرومبتات بعد التوليد؟",
+    a: "بالتأكيد. كل برومبت ملكك. يمكنك النسخ والتعديل والترجمة بين العربية والإنجليزية وإعادة التوليد أو تشغيل مُحسّن AI المدمج 'تحسين' لجولة ثانية.",
   },
   {
-    q: "Is my data private?",
-    a: "Yes. All accounts, prompts, and favorites are stored locally on your device by default. We don't sell your data. Period.",
+    q: "هل بياناتي خاصة؟",
+    a: "نعم. جميع الحسابات والبرومبتات والمفضلات تُخزّن محلياً على جهازك افتراضياً. لا نبيع بياناتك. أبداً.",
   },
   {
-    q: "Do you offer an API?",
-    a: "API access is on the roadmap. For now, the product is fully usable through the web UI.",
+    q: "هل تقدمون API؟",
+    a: "وصول API في خطتنا المستقبلية. حالياً، المنتج قابل للاستخدام بالكامل عبر واجهة الويب.",
   },
 ];
 
@@ -43,9 +43,9 @@ export function FAQ() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">FAQ</p>
+          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">الأسئلة الشائعة</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            Questions, <span className="text-gradient">answered</span>.
+            أسئلة، <span className="text-gradient">بإجابات</span>.
           </h2>
         </motion.div>
 
@@ -66,7 +66,7 @@ export function FAQ() {
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                  className="w-full flex items-center justify-between gap-4 p-5 text-right"
                 >
                   <span className="font-semibold text-sm md:text-base">{item.q}</span>
                   <span

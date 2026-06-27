@@ -39,12 +39,12 @@ export function Platforms() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">Platforms</p>
+          <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">المنصات</p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            Optimized for <span className="text-gradient">every major AI</span>.
+            محسّن <span className="text-gradient">لكل ذكاء اصطناعي رئيسي</span>.
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground">
-            Each prompt is tuned to the platform's quirks — formatting, tone, length, and best practices.
+          <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
+            كل برومبت مضبوط على خصائص كل منصة — التنسيق والنبرة والطول وأفضل الممارسات.
           </p>
         </motion.div>
 
@@ -64,7 +64,7 @@ export function Platforms() {
               </div>
               <h3 className="font-semibold mb-1">{p.label}</h3>
               <p className="text-xs text-muted-foreground leading-snug">{p.description}</p>
-              <span className="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/70">
+              <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/70">
                 {p.category}
               </span>
             </motion.div>
