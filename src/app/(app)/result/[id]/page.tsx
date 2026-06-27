@@ -40,9 +40,9 @@ const LEVEL_LABEL: Record<PromptLevel, string> = {
 };
 
 const LEVEL_DESCRIPTION: Record<PromptLevel, string> = {
-  basic: "قصير ومركّز، جاهز للاستخدام",
-  professional: "منظّم ومفصّل، جاهز للإنتاج",
-  expert: "شامل ومتعدد الطبقات، أعلى جودة",
+  basic: "نسخة قصيرة جاهزة للصق مباشرة",
+  professional: "نسخة مفصّلة وقابلة للتنفيذ",
+  expert: "نسخة شاملة بمواصفات تقنية احترافية",
 };
 
 export default function ResultPage({ params }: { params: { id: string } }) {
